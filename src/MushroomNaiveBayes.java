@@ -89,12 +89,12 @@ public class MushroomNaiveBayes {
         }
 
         int total = testData.size();
-        double accuracy = (double)(tp + tn) / total;
+        double accuracy = ((double)(tp + tn) / total) * 100;
         double precision = tp + fp == 0 ? 0 : (double) tp / (tp + fp);
         double recall = tp + fn == 0 ? 0 : (double) tp / (tp + fn);
         double fMeasure = (precision + recall) == 0 ? 0 : 2 * precision * recall / (precision + recall);
 
-        System.out.printf("Accuracy: %.4f\n", accuracy);
+        System.out.println("Accuracy: " + accuracy + "%");
         System.out.printf("Precision: %.4f\n", precision);
         System.out.printf("Recall: %.4f\n", recall);
         System.out.printf("F-measure: %.4f\n", fMeasure);
@@ -117,8 +117,8 @@ public class MushroomNaiveBayes {
 
     public static void main(String[] args) {
         try {
-            String trainFile = "agaricus-lepiota.data";
-            String testFile = "agaricus-lepiota.test.data";
+            String trainFile = "./src/data/agaricus-lepiota.data";
+            String testFile = "./src/data/agaricus-lepiota.test.data";
 
             List<String[]> trainData = loadData(trainFile);
             List<String[]> testData = loadData(testFile);
